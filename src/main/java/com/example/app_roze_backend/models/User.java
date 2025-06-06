@@ -2,20 +2,16 @@ package com.example.app_roze_backend.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.CollectionIdMutability;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Data
-@Entity
-@Table(name = "User")
+@MappedSuperclass
 public class User {
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(name = "nombre")
@@ -24,11 +20,11 @@ public class User {
     @Column(name = "correo", unique = true, nullable = false)
     private String email;
 
-    @Column(name = "contraseña")
+    @Column(name = "contraseña", nullable = false)
     private String password;
 
     @Column(name = "dni")
-    private int dni;
+    private String dni;
 
     @Column(name = "telefono")
     private String phone;

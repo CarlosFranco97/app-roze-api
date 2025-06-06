@@ -1,22 +1,22 @@
 package com.example.app_roze_backend.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @Entity
 @Table(name = "Viajero")
 public class Traveler extends User{
 
-    @Column(name = "id_calificacion", nullable = false)
+    @Column(name = "id_calificacion")
     private Integer ratingId;
 
-    @Column(name = "id_viaje", nullable = false)
+    @Column(name = "id_viaje")
     private Integer tripId;
 
-    @Column(name = "id_direccion", nullable = false)
-    private Integer addressId;
+    @OneToMany(mappedBy = "traveler")
+    private List<Address> addresses;
 
 }
